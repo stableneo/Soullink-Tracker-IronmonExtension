@@ -275,8 +275,8 @@ function BanlistScreen.createRouteBanBox(id)
 
             this.Buttons.showRouteBtn.clickableArea[1] = bx   	        -- x
             this.Buttons.showRouteBtn.clickableArea[2] = by   	        -- y
-            this.Buttons.showRouteBtn.clickableArea[3] = bx + maxX   	-- width
-            this.Buttons.showRouteBtn.clickableArea[4] = by + maxY   	-- heigth
+            this.Buttons.showRouteBtn.clickableArea[3] = maxX   	    -- width
+            this.Buttons.showRouteBtn.clickableArea[4] = maxY   	    -- heigth
         end,
 		draw = function(this)
             if not this:isVisible() then return end
