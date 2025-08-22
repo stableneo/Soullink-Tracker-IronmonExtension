@@ -44,8 +44,9 @@ local function SoullinkTracker()
 	function self.downloadAndInstallUpdate()
 		-- Note: After the extension files are downloaded from Github and unzipped, you may have extra files in there that aren't needed for the extension to work
 		-- Refer to the documentation in TrackerAPI to learn more about how to exclude these files/folders, as well as how to download from a specific release branch
-		local extensionFilenameKey = "SoullinkTracker" -- REPLACE WITH FILENAME OF EXTENSION
-		local success = TrackerAPI.updateExtension(extensionFilenameKey)
+		local extensionFilenameKey = "SoullinkTracker"
+		local docsPath = FileManager.getExtensionsFolderPath() .. FileManager.slash .. "docs"
+		local success = TrackerAPI.updateExtension(extensionFilenameKey, docsPath)
 		return success
 	end
 

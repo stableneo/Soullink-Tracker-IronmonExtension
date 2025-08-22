@@ -1,4 +1,3 @@
--- TODO global gap int
 ExtConstants = {
 	DEBUG = false,
 	PATHS = {
