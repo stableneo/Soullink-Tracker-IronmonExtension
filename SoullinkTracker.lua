@@ -19,6 +19,8 @@ local function SoullinkTracker()
 
 	local utils = dofile(soullinkPath .. "utils.lua")
 
+	local docsPath = FileManager.getExtensionsFolderPath() .. FileManager.slash .. "docs"
+
 	-- Executed when the user clicks the "Options" button while viewing the extension details within the Tracker's UI
 	function self.configureOptions()
 		ScreenHandler:toggleScreen("Settings")
@@ -45,7 +47,6 @@ local function SoullinkTracker()
 		-- Note: After the extension files are downloaded from Github and unzipped, you may have extra files in there that aren't needed for the extension to work
 		-- Refer to the documentation in TrackerAPI to learn more about how to exclude these files/folders, as well as how to download from a specific release branch
 		local extensionFilenameKey = "SoullinkTracker"
-		local docsPath = FileManager.getExtensionsFolderPath() .. FileManager.slash .. "docs"
 		local success = TrackerAPI.updateExtension(extensionFilenameKey, docsPath)
 		return success
 	end
@@ -55,6 +56,18 @@ local function SoullinkTracker()
 		-- create saves folder if not already done
 		if not FileManager.folderExists(ExtConstants.PATHS.saves) then
 			FileManager.createFolder(ExtConstants.PATHS.saves)
+		end
+
+		if FileManager.folderExists(docsPath) then
+			if Main.OS == "Windows" then
+				pcall(function()
+					os.execute('rmdir /S /Q "' .. docsPath .. '"')
+				end)
+			else
+				pcall(function()
+					os.execute('rm -rf "' .. docsPath .. '"')
+				end)
+			end
 		end
 
     	-- always get current rom name and corresponding save file
